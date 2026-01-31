@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOR BAZAR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        :root {
+            --primary-color: #002f34;
+            --secondary-color: #23e5db;
+            --accent-color: #ffce32;
+            --light-color: #f2f4f5;
+            --text-dark: #002f34;
+            --text-light: #7f9799;
+            --danger-color: #ff3f6c;
+            --success-color: #00a651;
+            --border-color: #e4e4e4;
+            --card-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            --hover-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-dark);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+            font-size: 28px;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 4px;
+            border: none;
+            font-size: 16px;
+            background-color: white;
+            padding-right: 50px;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sell-btn {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .sell-btn:hover {
+            background-color: #f5c400;
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .nav-extra {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-icon {
+            color: var(--text-dark);
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--danger-color);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* Twitter Accounts Section */
+        .twitter-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .twitter-accounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .twitter-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .twitter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .twitter-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .twitter-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary-color);
+            object-fit: cover;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .twitter-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .twitter-info p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .twitter-details {
+            padding: 15px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .detail-value {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .twitter-actions {
+            padding: 15px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .connect-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .connect-btn:hover {
+            background-color: #1bd1c7;
+        }
+
+        .view-btn {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .view-btn:hover {
+            background-color: #f5c400;
+        }
+
+        /* Products Section */
+        .products-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .products-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .product-image {
+            height: 200px;
+            width: 100%;
+            background-color: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--danger-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-details {
+            padding: 15px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            height: 45px;
+            overflow: hidden;
+        }
+
+        .product-location {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-light);
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Dashboard Stats */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-1 .stat-icon { background-color: rgba(35, 229, 219, 0.1); color: var(--secondary-color); }
+        .stat-2 .stat-icon { background-color: rgba(255, 206, 50, 0.1); color: var(--accent-color); }
+        .stat-3 .stat-icon { background-color: rgba(0, 166, 81, 0.1); color: var(--success-color); }
+        .stat-4 .stat-icon { background-color: rgba(255, 63, 108, 0.1); color: var(--danger-color); }
+
+        .stat-info h3 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .stat-info p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .category-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--secondary-color);
+        }
+
+        .category-icon {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .category-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-header h2 {
+            font-size: 22px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1bd1c7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 3000;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-container {
+                order: 3;
+                margin-top: 15px;
+                max-width: 100%;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+            
+            .twitter-accounts {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .sell-btn, .login-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .categories {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo span {
+                font-size: 20px;
+            }
+            
+            .header-actions {
+                gap: 8px;
+            }
+            
+            .twitter-accounts {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Enhanced Features */
+        .quick-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .quick-action-btn {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-action-btn:hover {
+            background-color: var(--light-color);
+            border-color: var(--secondary-color);
+        }
+
+        .product-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 30px;
+        }
+
+        .page-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--border-color);
+        }
+        
+        /* Added missing styles for account status */
+        .account-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .status-active {
+            background-color: rgba(0, 166, 81, 0.2);
+            color: var(--success-color);
+        }
+        
+        .status-inactive {
+            background-color: rgba(255, 63, 108, 0.2);
+            color: var(--danger-color);
+        }
+
+        /* Load More Button */
+        .load-more {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .load-more-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .load-more-btn:hover {
+            background-color: #1bd1c7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-store"></i>
+                <span>CHOR BAZAR</span>
+            </a>
+            
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Find cars, mobile phones, electronics, furniture, and more...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="header-actions">
+                <button class="sell-btn" id="openSellModal">
+                    <i class="fas fa-plus"></i>
+                    SELL
+                </button>
+                <button class="login-btn" id="openLoginModal">
+                    <i class="fas fa-user"></i>
+                    LOGIN
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="categories-section"><i class="fas fa-tags"></i> All Categories</a>
+                <a href="#"><i class="fas fa-bolt"></i> Featured</a>
+                <a href="#"><i class="fas fa-history"></i> Recent</a>
+                <a href="#"><i class="fas fa-heart"></i> Favorites</a>
+                <a href="#"><i class="fas fa-shopping-cart"></i> My Cart</a>
+                <a href="#"><i class="fas fa-chart-line"></i> Dashboard</a>
+            </div>
+            
+            <div class="nav-extra">
+                <div class="nav-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="nav-icon">
+                    <i class="fas fa-comments"></i>
+                    <span class="badge">5</span>
+                </div>
+                <div class="nav-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">2</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Dashboard Stats -->
+        <section class="dashboard-stats">
+            <div class="stat-card stat-1">
+                <div class="stat-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="totalProducts">240</h3>
+                    <p>Total Products</p>
+                </div>
+            </div>
+            <div class="stat-card stat-2">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="twitterAccounts">20</h3>
+                    <p>Twitter Accounts</p>
+                </div>
+            </div>
+            <div class="stat-card stat-3">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="soldProducts">89</h3>
+                    <p>Products Sold</p>
+                </div>
+            </div>
+            <div class="stat-card stat-4">
+                <div class="stat-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="totalViews">15.5K</h3>
+                    <p>Total Views</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="quick-action-btn" id="refreshData">
+                <i class="fas fa-sync-alt"></i> Refresh Data
+            </button>
+            <button class="quick-action-btn" id="exportData">
+                <i class="fas fa-download"></i> Export Data
+            </button>
+            <button class="quick-action-btn" id="connectTwitterBtn">
+                <i class="fab fa-twitter"></i> Connect Twitter
+            </button>
+            <button class="quick-action-btn" id="bulkPost">
+                <i class="fas fa-share-alt"></i> Bulk Post
+            </button>
+        </div>
+
+        <!-- Twitter Accounts Section -->
+        <section class="twitter-section">
+            <h2 class="section-title">
+                <i class="fab fa-twitter"></i>
+                Connected Twitter Accounts
+            </h2>
+            <p class="section-subtitle">Manage your 20 connected Twitter accounts for social selling and promotions</p>
+            
+            <div class="product-filters">
+                <select class="filter-select" id="twitterFilter">
+                    <option value="all">All Accounts</option>
+                    <option value="active">Active Only</option>
+                    <option value="inactive">Inactive Only</option>
+                    <option value="high-followers">High Followers</option>
+                </select>
+                <select class="filter-select" id="twitterSort">
+                    <option value="name">Sort by Name</option>
+                    <option value="followers">Sort by Followers</option>
+                    <option value="recent">Recently Active</option>
+                </select>
+            </div>
+            
+            <div class="twitter-accounts" id="twitterAccountsContainer">
+                <!-- Twitter accounts will be loaded here by JavaScript -->
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="action-btn connect-btn" style="padding: 12px 30px; font-size: 16px;">
+                    <i class="fab fa-twitter"></i> Connect New Twitter Account
+                </button>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title">
+                <i class="fas fa-th-large"></i>
+                Browse Categories
+            </h2>
+            <p class="section-subtitle">Explore products by category</p>
+            
+            <div class="categories">
+                <div class="category-card" data-category="mobile">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="category-name">Mobile Phones</div>
+                </div>
+                <div class="category-card" data-category="car">
+                    <div class="category-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="category-name">Cars</div>
+                </div>
+                <div class="category-card" data-category="electronics">
+                    <div class="category-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="category-name">Electronics</div>
+                </div>
+                <div class="category-card" data-category="furniture">
+                    <div class="category-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="category-name">Furniture</div>
+                </div>
+                <div class="category-card" data-category="property">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="category-name">Real Estate</div>
+                </div>
+                <div class="category-card" data-category="fashion">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="category-name">Fashion</div>
+                </div>
+                <div class="category-card" data-category="vehicle">
+                    <div class="category-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div class="category-name">Motorcycles</div>
+                </div>
+                <div class="category-card" data-category="pets">
+                    <div class="category-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <div class="category-name">Pets</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="products-tabs">
+                <button class="tab-btn active" data-tab="new">New Selling Products</button>
+                <button class="tab-btn" data-tab="old">Old Selling Products</button>
+                <button class="tab-btn" data-tab="featured">Featured Products</button>
+            </div>
+            
+            <div class="product-filters">
+                <select class="filter-select" id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="mobile">Mobile Phones</option>
+                    <option value="car">Cars</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="property">Real Estate</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="vehicle">Motorcycles</option>
+                    <option value="pets">Pets</option>
+                </select>
+                <select class="filter-select" id="priceFilter">
+                    <option value="all">All Prices</option>
+                    <option value="low">Low to High</option>
+                    <option value="high">High to Low</option>
+                    <option value="0-1000">Under ₹1,000</option>
+                    <option value="1000-10000">₹1,000 - ₹10,000</option>
+                    <option value="10000+">Above ₹10,000</option>
+                </select>
+                <select class="filter-select" id="locationFilter">
+                    <option value="all">All Locations</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="bangalore">Bangalore</option>
+                    <option value="chennai">Chennai</option>
+                    <option value="hyderabad">Hyderabad</option>
+                </select>
+            </div>
+            
+            <div class="tab-content" id="newProductsTab">
+                <div class="products-grid" id="newProductsGrid">
+                    <!-- New products will be loaded here by JavaScript -->
+                </div>
+                <div class="load-more">
+                    <button class="load-more-btn" id="loadMoreNew">Load More Products</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="oldProductsTab" style="display: none;">
+                <div class="products-grid" id="oldProductsGrid">
+                    <!-- Old products will be loaded here by JavaScript -->
+                </div>
+                <div class="load-more">
+                    <button class="load-more-btn" id="loadMoreOld">Load More Products</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="featuredProductsTab" style="display: none;">
+                <div class="products-grid" id="featuredProductsGrid">
+                    <!-- Featured products will be loaded here by JavaScript -->
+                </div>
+                <div class="load-more">
+                    <button class="load-more-btn" id="loadMoreFeatured">Load More Products</button>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sell Item Modal -->
+    <div class="modal" id="sellModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sell an Item</h2>
+                <button class="close-modal" id="closeSellModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="sellForm">
+                    <div class="form-group">
+                        <label for="itemTitle">Product Title *</label>
+                        <input type="text" id="itemTitle" class="form-control" placeholder="Enter product title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemCategory">Category *</label>
+                        <select id="itemCategory" class="form-control" required>
+                            <option value="">Select a category</option>
+                            <option value="mobile">Mobile Phones</option>
+                            <option value="car">Cars</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="property">Real Estate</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="vehicle">Motorcycles</option>
+                            <option value="pets">Pets</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemPrice">Price (₹) *</label>
+                        <input type="number" id="itemPrice" class="form-control" placeholder="Enter price" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemDescription">Description *</label>
+                        <textarea id="itemDescription" class="form-control" rows="4" placeholder="Describe your product in detail" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemLocation">Location *</label>
+                        <input type="text" id="itemLocation" class="form-control" placeholder="Enter city or area" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemCondition">Condition *</label>
+                        <select id="itemCondition" class="form-control" required>
+                            <option value="new">New</option>
+                            <option value="used">Used</option>
+                            <option value="refurbished">Refurbished</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="postToTwitter" checked> Post to connected Twitter accounts
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="featuredProduct"> Mark as featured product (extra ₹99)
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Post Listing</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login / Sign Up</h2>
+                <button class="close-modal" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Login</button>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <p>Don't have an account? <a href="#" style="color: var(--secondary-color); font-weight: 600;">Sign up here</a></p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <p>Or connect with:</p>
+                        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+                            <button type="button" class="action-btn connect-btn" style="padding: 10px 20px;">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </button>
+                            <button type="button" class="action-btn" style="background-color: #3b5998; color: white; padding: 10px 20px;">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                            <button type="button" class="action-btn" style="background-color: #db4437; color: white; padding: 10px 20px;">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Element -->
+    <div class="notification" id="notification">
+        <span id="notificationText">Notification message</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MarketPro</h3>
+                    <p style="color: #ccc; line-height: 1.6; margin-bottom: 15px;">Your trusted marketplace for buying and selling everything from used cars to mobile phones, electronics, furniture, property, and more.</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: var(--secondary-color); font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: var(--secondary-color); font-size: 20px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: var(--secondary-color); font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: var(--secondary-color); font-size: 20px;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Cars</a></li>
+                        <li><a href="#">Properties</a></li>
+                        <li><a href="#">Mobile Phones</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Furniture</a></li>
+                        <li><a href="#">Jobs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Seller Guidelines</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope" style="margin-right: 8px;"></i> support@marketpro.com</li>
+                        <li><i class="fas fa-phone" style="margin-right: 8px;"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> 123 Market St, San Francisco, CA</li>
+                        <li><i class="fas fa-clock" style="margin-right: 8px;"></i> Mon-Sun: 9:00 AM - 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MarketPro - Complete OLX Clone. All rights reserved. | Designed for easy deployment on Render</p>
+                <p style="margin-top: 5px; font-size: 12px;">Includes 20 Twitter accounts integration, advanced filtering, dashboard analytics, and fully responsive design</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Data for 20 Twitter Accounts with more details
+        const twitterAccounts = [
+            { id: 1, username: "john_seller", displayName: "John Seller", followers: 12500, following: 340, tweets: 567, joined: "Jan 2018", connected: true, status: "active", lastActive: "2 hours ago", email: "john@example.com", location: "New York, NY", avatarColor: "#1DA1F2" },
+            { id: 2, username: "tech_deals", displayName: "Tech Deals", followers: 8900, following: 120, tweets: 1245, joined: "Mar 2019", connected: true, status: "active", lastActive: "1 day ago", email: "tech@example.com", location: "San Francisco, CA", avatarColor: "#FFCE32" },
+            { id: 3, username: "auto_expert", displayName: "Auto Expert", followers: 3400, following: 450, tweets: 789, joined: "Aug 2020", connected: true, status: "active", lastActive: "3 hours ago", email: "auto@example.com", location: "Los Angeles, CA", avatarColor: "#00A651" },
+            { id: 4, username: "home_essentials", displayName: "Home Essentials", followers: 2100, following: 600, tweets: 432, joined: "Dec 2017", connected: true, status: "active", lastActive: "1 week ago", email: "home@example.com", location: "Chicago, IL", avatarColor: "#FF3F6C" },
+            { id: 5, username: "fashion_trendz", displayName: "Fashion Trendz", followers: 15600, following: 1200, tweets: 2100, joined: "Jun 2016", connected: true, status: "active", lastActive: "Yesterday", email: "fashion@example.com", location: "Miami, FL", avatarColor: "#9B51E0" },
+            { id: 6, username: "mobile_guru", displayName: "Mobile Guru", followers: 7800, following: 300, tweets: 987, joined: "Feb 2021", connected: true, status: "active", lastActive: "Today", email: "mobile@example.com", location: "Seattle, WA", avatarColor: "#23E5DB" },
+            { id: 7, username: "property_king", displayName: "Property King", followers: 4500, following: 800, tweets: 654, joined: "Nov 2018", connected: true, status: "active", lastActive: "3 days ago", email: "property@example.com", location: "Austin, TX", avatarColor: "#F2994A" },
+            { id: 8, username: "gadget_world", displayName: "Gadget World", followers: 11200, following: 500, tweets: 1345, joined: "Apr 2019", connected: true, status: "active", lastActive: "4 hours ago", email: "gadget@example.com", location: "Boston, MA", avatarColor: "#2F80ED" },
+            { id: 9, username: "pet_lover", displayName: "Pet Lover", followers: 3200, following: 900, tweets: 876, joined: "Sep 2020", connected: true, status: "inactive", lastActive: "2 weeks ago", email: "pet@example.com", location: "Denver, CO", avatarColor: "#EB5757" },
+            { id: 10, username: "sports_gear", displayName: "Sports Gear", followers: 5400, following: 700, tweets: 543, joined: "Jul 2017", connected: true, status: "active", lastActive: "5 hours ago", email: "sports@example.com", location: "Portland, OR", avatarColor: "#27AE60" },
+            { id: 11, username: "book_worm", displayName: "Book Worm", followers: 2900, following: 400, tweets: 765, joined: "May 2019", connected: false, status: "inactive", lastActive: "1 month ago", email: "book@example.com", location: "Philadelphia, PA", avatarColor: "#4F4F4F" },
+            { id: 12, username: "art_collector", displayName: "Art Collector", followers: 3800, following: 600, tweets: 432, joined: "Oct 2018", connected: false, status: "inactive", lastActive: "3 weeks ago", email: "art@example.com", location: "Washington, DC", avatarColor: "#BB6BD9" },
+            { id: 13, username: "music_instruments", displayName: "Music Instruments", followers: 4100, following: 350, tweets: 321, joined: "Mar 2020", connected: false, status: "inactive", lastActive: "2 months ago", email: "music@example.com", location: "Nashville, TN", avatarColor: "#F2C94C" },
+            { id: 14, username: "gaming_gear", displayName: "Gaming Gear", followers: 12500, following: 1100, tweets: 1890, joined: "Jan 2021", connected: false, status: "active", lastActive: "6 days ago", email: "gaming@example.com", location: "Las Vegas, NV", avatarColor: "#56CCF2" },
+            { id: 15, username: "farm_fresh", displayName: "Farm Fresh", followers: 2700, following: 850, tweets: 456, joined: "Aug 2019", connected: false, status: "inactive", lastActive: "5 weeks ago", email: "farm@example.com", location: "Dallas, TX", avatarColor: "#6FCF97" },
+            { id: 16, username: "diy_projects", displayName: "DIY Projects", followers: 6300, following: 950, tweets: 789, joined: "Dec 2020", connected: false, status: "active", lastActive: "1 week ago", email: "diy@example.com", location: "Phoenix, AZ", avatarColor: "#F2994A" },
+            { id: 17, username: "luxury_items", displayName: "Luxury Items", followers: 8900, following: 400, tweets: 234, joined: "Feb 2018", connected: false, status: "inactive", lastActive: "2 months ago", email: "luxury@example.com", location: "Houston, TX", avatarColor: "#333333" },
+            { id: 18, username: "vintage_collector", displayName: "Vintage Collector", followers: 5100, following: 700, tweets: 567, joined: "Jun 2017", connected: false, status: "active", lastActive: "3 days ago", email: "vintage@example.com", location: "New Orleans, LA", avatarColor: "#828282" },
+            { id: 19, username: "baby_products", displayName: "Baby Products", followers: 3400, following: 600, tweets: 432, joined: "Nov 2019", connected: false, status: "inactive", lastActive: "6 weeks ago", email: "baby@example.com", location: "Atlanta, GA", avatarColor: "#FFC0CB" },
+            { id: 20, username: "fitness_equipment", displayName: "Fitness Equipment", followers: 7200, following: 800, tweets: 654, joined: "Apr 2021", connected: false, status: "active", lastActive: "Yesterday", email: "fitness@example.com", location: "San Diego, CA", avatarColor: "#4F4F4F" }
+        ];
+
+        // Product Image URLs - Using Picsum Photos for high-quality placeholder images
+        const productImages = {
+            mobile: [
+                "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXBob25lJTIwMTQlMjBwcm8lMjBtYXh8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c21hcnRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2Ftc3VuZyUyMHBob25lfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1575695342320-d2d2d2f9b73f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG9uZXBsdXMlMjBwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJlZG1pJTIwcGhvbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+            ],
+            car: [
+                "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FyfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FyfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2FyfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2FyfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1494905998402-395d579af36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+            ],
+            electronics: [
+                "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHZ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2FzaGluZyUyMG1hY2hpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWlyJTIwY29uZGl0aW9uZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+            ],
+            furniture: [
+                "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29mYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlJTIwY2hhaXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnVybml0dXJlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGl2aW5nJTIwcm9vbXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+            ],
+            property: [
+                "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1567496898669-ee935f003f30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+            ],
+            fashion: [
+                "https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1544441893-675973e31985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2xvdGhpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2xvdGhpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+            ],
+            vehicle: [
+                "https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW90b3JjeWNsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW90b3JjeWNsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1566891438108-2049e04b5efb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bW90b3JjeWNsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1522932467653-e48f79727abf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1vdG9yY3ljbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1vdG9yY3ljbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
+            ],
+            pets: [
+                "https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z29sZGVuJTIwcmV0cmlldmVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9nfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2F0fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1514888286974-6d03bde4ba4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2F0fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+                "https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9nfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+            ]
+        };
+
+        // Enhanced Products Data with 30 products per category
+        const generateProducts = () => {
+            const categories = ['mobile', 'car', 'electronics', 'furniture', 'property', 'fashion', 'vehicle', 'pets'];
+            const conditions = ['new', 'used', 'refurbished'];
+            const locations = [
+                'Mumbai, Maharashtra', 'Delhi', 'Bangalore, Karnataka', 'Chennai, Tamil Nadu', 
+                'Hyderabad, Telangana', 'Pune, Maharashtra', 'Kolkata, West Bengal', 'Ahmedabad, Gujarat',
+                'Jaipur, Rajasthan', 'Lucknow, Uttar Pradesh'
+            ];
+            const dates = ['Today', 'Yesterday', '2 days ago', '3 days ago', '1 week ago'];
+            
+            const productsData = {
+                new: [],
+                old: [],
+                featured: []
+            };
+
+            let id = 1;
+            
+            categories.forEach(category => {
+                for (let i = 1; i <= 30; i++) {
+                    const condition = conditions[Math.floor(Math.random() * conditions.length)];
+                    const location = locations[Math.floor(Math.random() * locations.length)];
+                    const date = dates[Math.floor(Math.random() * dates.length)];
+                    const imageIndex = Math.floor(Math.random() * productImages[category].length);
+                    
+                    // Generate price based on category
+                    let price;
+                    switch(category) {
+                        case 'mobile': price = Math.floor(Math.random() * 100000) + 10000; break;
+                        case 'car': price = Math.floor(Math.random() * 5000000) + 500000; break;
+                        case 'electronics': price = Math.floor(Math.random() * 200000) + 5000; break;
+                        case 'furniture': price = Math.floor(Math.random() * 100000) + 5000; break;
+                        case 'property': price = Math.floor(Math.random() * 20000000) + 5000000; break;
+                        case 'fashion': price = Math.floor(Math.random() * 50000) + 1000; break;
+                        case 'vehicle': price = Math.floor(Math.random() * 500000) + 50000; break;
+                        case 'pets': price = Math.floor(Math.random() * 50000) + 5000; break;
+                        default: price = Math.floor(Math.random() * 50000) + 1000;
+                    }
+                    
+                    const views = Math.floor(Math.random() * 1000) + 100;
+                    const featured = Math.random() > 0.7;
+                    const sold = Math.random() > 0.8;
+                    
+                    // Generate product title based on category
+                    let title = '';
+                    switch(category) {
+                        case 'mobile':
+                            const mobileBrands = ['iPhone', 'Samsung Galaxy', 'OnePlus', 'Xiaomi', 'Google Pixel', 'Oppo', 'Vivo', 'Realme'];
+                            const mobileModels = ['Pro Max', 'Ultra', 'Plus', 'Lite', 'Note', 'SE', 'Mini'];
+                            title = `${mobileBrands[Math.floor(Math.random() * mobileBrands.length)]} ${i}${mobileModels[Math.floor(Math.random() * mobileModels.length)]} - ${condition === 'new' ? 'Brand New' : 'Excellent Condition'}`;
+                            break;
+                        case 'car':
+                            const carBrands = ['Maruti Suzuki', 'Hyundai', 'Honda', 'Toyota', 'Mahindra', 'Tata', 'Ford', 'BMW', 'Mercedes'];
+                            const carModels = ['Swift', 'City', 'Creta', 'Fortuner', 'Scorpio', 'Nexon', 'EcoSport', 'X5', 'C-Class'];
+                            title = `${carBrands[Math.floor(Math.random() * carBrands.length)]} ${carModels[Math.floor(Math.random() * carModels.length)]} ${2020 - Math.floor(Math.random() * 10)}`;
+                            break;
+                        case 'electronics':
+                            const elecTypes = ['Laptop', 'TV', 'Refrigerator', 'AC', 'Camera', 'Washing Machine', 'Headphones', 'Smart Watch'];
+                            const elecBrands = ['Apple', 'Samsung', 'LG', 'Sony', 'Canon', 'Dell', 'HP', 'Bose'];
+                            title = `${elecBrands[Math.floor(Math.random() * elecBrands.length)]} ${elecTypes[Math.floor(Math.random() * elecTypes.length)]} - ${condition === 'new' ? 'Latest Model' : 'Good Condition'}`;
+                            break;
+                        case 'furniture':
+                            const furnitureTypes = ['Sofa Set', 'Dining Table', 'Bed', 'Wardrobe', 'Office Chair', 'Study Table', 'Bookshelf', 'TV Unit'];
+                            const materials = ['Wooden', 'Leather', 'Fabric', 'Metal', 'Glass'];
+                            title = `${materials[Math.floor(Math.random() * materials.length)]} ${furnitureTypes[Math.floor(Math.random() * furnitureTypes.length)]} - ${condition === 'new' ? 'Brand New' : 'Well Maintained'}`;
+                            break;
+                        case 'property':
+                            const propTypes = ['2BHK Apartment', '3BHK Flat', 'Villa', 'Independent House', 'Studio Apartment', 'Penthouse', 'Farmhouse'];
+                            const areas = ['Prime Location', 'Gated Community', 'Near Metro', 'City Center', 'Suburban Area'];
+                            title = `${propTypes[Math.floor(Math.random() * propTypes.length)]} for Sale - ${areas[Math.floor(Math.random() * areas.length)]}`;
+                            break;
+                        case 'fashion':
+                            const fashionTypes = ['Designer Handbag', 'Leather Jacket', 'Running Shoes', 'Formal Suit', 'Casual Shirt', 'Jeans', 'Watch', 'Sunglasses'];
+                            const fashionBrands = ['Louis Vuitton', 'Gucci', 'Nike', 'Adidas', 'Zara', 'H&M', 'Ray-Ban', 'Rolex'];
+                            title = `${fashionBrands[Math.floor(Math.random() * fashionBrands.length)]} ${fashionTypes[Math.floor(Math.random() * fashionTypes.length)]} - ${condition === 'new' ? 'Authentic' : 'Pre-owned'}`;
+                            break;
+                        case 'vehicle':
+                            const bikeBrands = ['Royal Enfield', 'Bajaj', 'Hero', 'Honda', 'Yamaha', 'TVS', 'KTM', 'Suzuki'];
+                            const bikeModels = ['Classic 350', 'Pulsar', 'Splendor', 'Activa', 'R15', 'Apache', 'Duke', 'Hayabusa'];
+                            title = `${bikeBrands[Math.floor(Math.random() * bikeBrands.length)]} ${bikeModels[Math.floor(Math.random() * bikeModels.length)]} - ${2020 - Math.floor(Math.random() * 10)} Model`;
+                            break;
+                        case 'pets':
+                            const petTypes = ['Golden Retriever', 'Labrador', 'German Shepherd', 'Persian Cat', 'Siamese Cat', 'Parrot', 'Rabbit', 'Hamster'];
+                            title = `${petTypes[Math.floor(Math.random() * petTypes.length)]} Puppy/Kitten - ${condition === 'new' ? 'Vaccinated' : 'Trained'}`;
+                            break;
+                    }
+                    
+                    const product = {
+                        id: id++,
+                        title: title,
+                        price: price,
+                        location: location,
+                        date: date,
+                        category: category,
+                        condition: condition,
+                        views: views,
+                        featured: featured,
+                        sold: sold,
+                        image: productImages[category][imageIndex]
+                    };
+                    
+                    // Distribute products across tabs
+                    if (sold) {
+                        productsData.old.push(product);
+                    } else if (featured) {
+                        productsData.featured.push(product);
+                    } else {
+                        productsData.new.push(product);
+                    }
+                }
+            });
+            
+            return productsData;
+        };
+
+        // Generate products
+        const productsData = generateProducts();
+
+        // DOM elements
+        const twitterAccountsContainer = document.getElementById('twitterAccountsContainer');
+        const newProductsGrid = document.getElementById('newProductsGrid');
+        const oldProductsGrid = document.getElementById('oldProductsGrid');
+        const featuredProductsGrid = document.getElementById('featuredProductsGrid');
+        const sellModal = document.getElementById('sellModal');
+        const loginModal = document.getElementById('loginModal');
+        const openSellModalBtn = document.getElementById('openSellModal');
+        const closeSellModalBtn = document.getElementById('closeSellModal');
+        const openLoginModalBtn = document.getElementById('openLoginModal');
+        const closeLoginModalBtn = document.getElementById('closeLoginModal');
+        const connectTwitterBtn = document.getElementById('connectTwitterBtn');
+        const sellForm = document.getElementById('sellForm');
+        const loginForm = document.getElementById('loginForm');
+        const searchBox = document.querySelector('.search-box');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notificationText');
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const twitterFilter = document.getElementById('twitterFilter');
+        const twitterSort = document.getElementById('twitterSort');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const locationFilter = document.getElementById('locationFilter');
+        const refreshDataBtn = document.getElementById('refreshData');
+        const exportDataBtn = document.getElementById('exportData');
+        const bulkPostBtn = document.getElementById('bulkPost');
+        const loadMoreNewBtn = document.getElementById('loadMoreNew');
+        const loadMoreOldBtn = document.getElementById('loadMoreOld');
+        const loadMoreFeaturedBtn = document.getElementById('loadMoreFeatured');
+
+        // State variables
+        let currentTwitterFilter = 'all';
+        let currentTwitterSort = 'name';
+        let currentCategoryFilter = 'all';
+        let currentPriceFilter = 'all';
+        let currentLocationFilter = 'all';
+        let currentTab = 'new';
+        let visibleProducts = {
+            new: 12,
+            old: 12,
+            featured: 12
+        };
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            renderTwitterAccounts();
+            renderProducts('new', newProductsGrid, visibleProducts.new);
+            renderProducts('old', oldProductsGrid, visibleProducts.old);
+            renderProducts('featured', featuredProductsGrid, visibleProducts.featured);
+            setupEventListeners();
+        });
+
+        // Update dashboard statistics
+        function updateStats() {
+            const totalProducts = productsData.new.length + productsData.old.length + productsData.featured.length;
+            document.getElementById('totalProducts').textContent = totalProducts;
+            document.getElementById('twitterAccounts').textContent = twitterAccounts.length;
+            document.getElementById('soldProducts').textContent = productsData.old.length;
+            
+            // Calculate total views
+            let totalViews = 0;
+            Object.values(productsData).forEach(category => {
+                category.forEach(product => {
+                    totalViews += product.views || 0;
+                });
+            });
+            document.getElementById('totalViews').textContent = totalViews >= 1000 ? 
+                (totalViews/1000).toFixed(1) + 'K' : totalViews;
+        }
+
+        // Render Twitter accounts with filtering and sorting
+        function renderTwitterAccounts() {
+            twitterAccountsContainer.innerHTML = '';
+            
+            let filteredAccounts = [...twitterAccounts];
+            
+            // Apply filtering
+            if (currentTwitterFilter === 'active') {
+                filteredAccounts = filteredAccounts.filter(account => account.status === 'active');
+            } else if (currentTwitterFilter === 'inactive') {
+                filteredAccounts = filteredAccounts.filter(account => account.status === 'inactive');
+            } else if (currentTwitterFilter === 'high-followers') {
+                filteredAccounts = filteredAccounts.filter(account => account.followers > 5000);
+            }
+            
+            // Apply sorting
+            if (currentTwitterSort === 'followers') {
+                filteredAccounts.sort((a, b) => b.followers - a.followers);
+            } else if (currentTwitterSort === 'recent') {
+                // Simple sorting based on lastActive (for demo)
+                filteredAccounts.sort((a, b) => {
+                    const timeA = getTimeValue(a.lastActive);
+                    const timeB = getTimeValue(b.lastActive);
+                    return timeB - timeA;
+                });
+            } else {
+                filteredAccounts.sort((a, b) => a.displayName.localeCompare(b.displayName));
+            }
+            
+            if (filteredAccounts.length === 0) {
+                twitterAccountsContainer.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="fab fa-twitter"></i>
+                        <h3>No accounts found</h3>
+                        <p>Try changing your filter settings</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredAccounts.forEach(account => {
+                const accountCard = document.createElement('div');
+                accountCard.className = 'twitter-card';
+                
+                const initials = account.displayName.split(' ').map(n => n[0]).join('');
+                const statusClass = account.status === 'active' ? 'status-active' : 'status-inactive';
+                const statusText = account.status === 'active' ? 'Active' : 'Inactive';
+                
+                accountCard.innerHTML = `
+                    <div class="twitter-header">
+                        <div class="twitter-avatar" style="background-color: ${account.avatarColor}">
+                            ${initials}
+                        </div>
+                        <div class="twitter-info">
+                            <h3>${account.displayName}</h3>
+                            <p>@${account.username}</p>
+                            <span class="account-status ${statusClass}">${statusText}</span>
+                        </div>
+                    </div>
+                    <div class="twitter-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Followers</span>
+                            <span class="detail-value">${account.followers.toLocaleString()}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Following</span>
+                            <span class="detail-value">${account.following.toLocaleString()}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Tweets</span>
+                            <span class="detail-value">${account.tweets.toLocaleString()}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Last Active</span>
+                            <span class="detail-value">${account.lastActive}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value">${account.email}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value">${account.location}</span>
+                        </div>
+                    </div>
+                    <div class="twitter-actions">
+                        <button class="action-btn ${account.connected ? 'connect-btn' : 'view-btn'}" data-id="${account.id}">
+                            <i class="fab fa-twitter"></i>
+                            ${account.connected ? 'Connected' : 'Connect'}
+                        </button>
+                        <button class="action-btn view-btn" data-id="${account.id}">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                    </div>
+                `;
+                
+                twitterAccountsContainer.appendChild(accountCard);
+            });
+        }
+
+        // Helper function to convert lastActive string to a numeric value for sorting
+        function getTimeValue(timeString) {
+            if (timeString.includes('hour') || timeString.includes('hours')) {
+                const hours = parseInt(timeString) || 1;
+                return hours;
+            } else if (timeString.includes('day') || timeString.includes('days')) {
+                const days = parseInt(timeString) || 1;
+                return days * 24;
+            } else if (timeString.includes('week') || timeString.includes('weeks')) {
+                const weeks = parseInt(timeString) || 1;
+                return weeks * 24 * 7;
+            } else if (timeString.includes('month') || timeString.includes('months')) {
+                const months = parseInt(timeString) || 1;
+                return months * 24 * 30;
+            } else if (timeString === 'Today' || timeString === 'Just now') {
+                return 0;
+            } else if (timeString === 'Yesterday') {
+                return 24;
+            }
+            return 9999; // For older dates
+        }
+
+        // Render products with filtering
+        function renderProducts(type, container, limit = null) {
+            container.innerHTML = '';
+            
+            let filteredProducts = [...productsData[type]];
+            
+            // Apply category filter
+            if (currentCategoryFilter !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.category === currentCategoryFilter);
+            }
+            
+            // Apply location filter
+            if (currentLocationFilter !== 'all') {
+                filteredProducts = filteredProducts.filter(product => 
+                    product.location.toLowerCase().includes(currentLocationFilter.toLowerCase()));
+            }
+            
+            // Apply price filter
+            if (currentPriceFilter !== 'all') {
+                if (currentPriceFilter === 'low') {
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                } else if (currentPriceFilter === 'high') {
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                } else if (currentPriceFilter === '0-1000') {
+                    filteredProducts = filteredProducts.filter(product => product.price < 1000);
+                } else if (currentPriceFilter === '1000-10000') {
+                    filteredProducts = filteredProducts.filter(product => product.price >= 1000 && product.price <= 10000);
+                } else if (currentPriceFilter === '10000+') {
+                    filteredProducts = filteredProducts.filter(product => product.price > 10000);
+                }
+            }
+            
+            if (filteredProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="fas fa-search"></i>
+                        <h3>No products found</h3>
+                        <p>Try changing your filter settings</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Apply limit if specified
+            const displayProducts = limit ? filteredProducts.slice(0, limit) : filteredProducts;
+            
+            displayProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                const badge = product.sold ? 'SOLD' : (product.featured ? 'FEATURED' : '');
+                const badgeColor = product.sold ? 'var(--danger-color)' : 'var(--secondary-color)';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}" loading="lazy">
+                        ${badge ? `<div class="product-badge" style="background-color: ${badgeColor}">${badge}</div>` : ''}
+                    </div>
+                    <div class="product-details">
+                        <div class="product-price">₹${product.price.toLocaleString()}</div>
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${product.location}
+                        </div>
+                        <div class="product-meta">
+                            <span>${product.category.toUpperCase()}</span>
+                            <span>${product.date}</span>
+                        </div>
+                        ${product.views ? `<div style="font-size: 11px; color: var(--text-light); margin-top: 5px;">
+                            <i class="fas fa-eye"></i> ${product.views} views
+                        </div>` : ''}
+                    </div>
+                `;
+                
+                container.appendChild(productCard);
+            });
+            
+            // Update load more button visibility
+            const loadMoreBtn = document.getElementById(`loadMore${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            if (loadMoreBtn) {
+                if (displayProducts.length >= filteredProducts.length) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'inline-block';
+                }
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Modal open/close
+            openSellModalBtn.addEventListener('click', () => sellModal.style.display = 'flex');
+            closeSellModalBtn.addEventListener('click', () => sellModal.style.display = 'none');
+            openLoginModalBtn.addEventListener('click', () => loginModal.style.display = 'flex');
+            closeLoginModalBtn.addEventListener('click', () => loginModal.style.display = 'none');
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === sellModal) sellModal.style.display = 'none';
+                if (e.target === loginModal) loginModal.style.display = 'none';
+            });
+            
+            // Tab switching
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tab = this.getAttribute('data-tab');
+                    
+                    // Update active tab button
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding tab content
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    document.getElementById(`${tab}ProductsTab`).style.display = 'block';
+                    currentTab = tab;
+                    
+                    // Re-render products for current tab
+                    renderProducts(currentTab, document.getElementById(`${currentTab}ProductsGrid`), visibleProducts[currentTab]);
+                });
+            });
+            
+            // Filter event listeners
+            twitterFilter.addEventListener('change', (e) => {
+                currentTwitterFilter = e.target.value;
+                renderTwitterAccounts();
+            });
+            
+            twitterSort.addEventListener('change', (e) => {
+                currentTwitterSort = e.target.value;
+                renderTwitterAccounts();
+            });
+            
+            categoryFilter.addEventListener('change', (e) => {
+                currentCategoryFilter = e.target.value;
+                renderProducts(currentTab, document.getElementById(`${currentTab}ProductsGrid`), visibleProducts[currentTab]);
+            });
+            
+            priceFilter.addEventListener('change', (e) => {
+                currentPriceFilter = e.target.value;
+                renderProducts(currentTab, document.getElementById(`${currentTab}ProductsGrid`), visibleProducts[currentTab]);
+            });
+            
+            locationFilter.addEventListener('change', (e) => {
+                currentLocationFilter = e.target.value;
+                renderProducts(currentTab, document.getElementById(`${currentTab}ProductsGrid`), visibleProducts[currentTab]);
+            });
+            
+            // Quick action buttons
+            refreshDataBtn.addEventListener('click', () => {
+                showNotification('Data refreshed successfully!');
+                updateStats();
+            });
+            
+            exportDataBtn.addEventListener('click', () => {
+                showNotification('Data export started. Download will begin shortly.');
+                // In a real app, this would trigger a file download
+            });
+            
+            bulkPostBtn.addEventListener('click', () => {
+                showNotification('Bulk posting to Twitter accounts initiated.');
+                // In a real app, this would post to multiple Twitter accounts
+            });
+            
+            // Load more buttons
+            loadMoreNewBtn.addEventListener('click', () => {
+                visibleProducts.new += 12;
+                renderProducts('new', newProductsGrid, visibleProducts.new);
+            });
+            
+            loadMoreOldBtn.addEventListener('click', () => {
+                visibleProducts.old += 12;
+                renderProducts('old', oldProductsGrid, visibleProducts.old);
+            });
+            
+            loadMoreFeaturedBtn.addEventListener('click', () => {
+                visibleProducts.featured += 12;
+                renderProducts('featured', featuredProductsGrid, visibleProducts.featured);
+            });
+            
+            connectTwitterBtn.addEventListener('click', () => {
+                alert('Redirecting to Twitter OAuth for account connection. In a real app, this would connect to Twitter API.');
+                
+                // Simulate connecting a random account
+                const randomIndex = Math.floor(Math.random() * twitterAccounts.length);
+                if (!twitterAccounts[randomIndex].connected) {
+                    twitterAccounts[randomIndex].connected = true;
+                    twitterAccounts[randomIndex].status = 'active';
+                    twitterAccounts[randomIndex].lastActive = 'Just now';
+                    renderTwitterAccounts();
+                    updateStats();
+                    showNotification(`Successfully connected to @${twitterAccounts[randomIndex].username}`);
+                }
+            });
+            
+            // Sell form submission
+            sellForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const title = document.getElementById('itemTitle').value;
+                const category = document.getElementById('itemCategory').value;
+                const price = parseInt(document.getElementById('itemPrice').value);
+                const description = document.getElementById('itemDescription').value;
+                const location = document.getElementById('itemLocation').value;
+                const condition = document.getElementById('itemCondition').value;
+                const postToTwitter = document.getElementById('postToTwitter').checked;
+                const featuredProduct = document.getElementById('featuredProduct').checked;
+                
+                // Get random image for the category
+                const categoryImages = productImages[category];
+                const randomImage = categoryImages ? categoryImages[Math.floor(Math.random() * categoryImages.length)] : productImages.mobile[0];
+                
+                // Create new product
+                const newProduct = {
+                    id: productsData.new.length + productsData.old.length + productsData.featured.length + 1,
+                    title: title,
+                    price: price,
+                    location: location,
+                    date: "Just now",
+                    category: category,
+                    condition: condition,
+                    views: 0,
+                    featured: featuredProduct,
+                    sold: false,
+                    image: randomImage
+                };
+                
+                // Add to appropriate array
+                if (featuredProduct) {
+                    productsData.featured.unshift(newProduct);
+                } else {
+                    productsData.new.unshift(newProduct);
+                }
+                
+                // Re-render products
+                renderProducts('new', newProductsGrid, visibleProducts.new);
+                if (featuredProduct) {
+                    renderProducts('featured', featuredProductsGrid, visibleProducts.featured);
+                }
+                
+                // Update stats
+                updateStats();
+                
+                // Show success message
+                let message = `Product "${title}" listed successfully for ₹${price.toLocaleString()}!`;
+                if (postToTwitter) {
+                    const connectedAccounts = twitterAccounts.filter(acc => acc.connected).length;
+                    message += ` Posted to ${connectedAccounts} Twitter account${connectedAccounts !== 1 ? 's' : ''}.`;
+                }
+                if (featuredProduct) {
+                    message += " This is now a featured product.";
+                }
+                
+                showNotification(message);
+                
+                // Reset form and close modal
+                sellForm.reset();
+                sellModal.style.display = 'none';
+            });
+            
+            // Login form submission
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Simple validation
+                if (email && password) {
+                    showNotification(`Login successful! Welcome back, ${email.split('@')[0]}`);
+                    loginModal.style.display = 'none';
+                    openLoginModalBtn.innerHTML = '<i class="fas fa-user"></i> MY ACCOUNT';
+                    
+                    // Update user badge
+                    document.querySelector('.login-btn').innerHTML = '<i class="fas fa-user"></i> MY ACCOUNT';
+                } else {
+                    showNotification('Please fill in all fields', 'error');
+                }
+            });
+            
+            // Search functionality
+            searchBox.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    const searchTerm = searchBox.value.toLowerCase().trim();
+                    
+                    if (searchTerm === '') {
+                        renderProducts(currentTab, document.getElementById(`${currentTab}ProductsGrid`), visibleProducts[currentTab]);
+                        return;
+                    }
+                    
+                    // Filter products based on search term
+                    const allProducts = [...productsData.new, ...productsData.old, ...productsData.featured];
+                    const filteredProducts = allProducts.filter(product => 
+                        product.title.toLowerCase().includes(searchTerm) ||
+                        product.category.toLowerCase().includes(searchTerm) ||
+                        product.location.toLowerCase().includes(searchTerm) ||
+                        product.condition.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    if (filteredProducts.length === 0) {
+                        document.getElementById(`${currentTab}ProductsGrid`).innerHTML = `
+                            <div class="empty-state" style="grid-column: 1 / -1;">
+                                <i class="fas fa-search"></i>
+                                <h3>No results found for "${searchTerm}"</h3>
+                                <p>Try different keywords or browse categories</p>
+                            </div>
+                        `;
+                    } else {
+                        // Show search results
+                        const container = document.getElementById(`${currentTab}ProductsGrid`);
+                        container.innerHTML = '';
+                        
+                        filteredProducts.forEach(product => {
+                            const productCard = document.createElement('div');
+                            productCard.className = 'product-card';
+                            
+                            const badge = product.sold ? 'SOLD' : (product.featured ? 'FEATURED' : '');
+                            const badgeColor = product.sold ? 'var(--danger-color)' : 'var(--secondary-color)';
+                            
+                            productCard.innerHTML = `
+                                <div class="product-image">
+                                    <img src="${product.image}" alt="${product.title}">
+                                    ${badge ? `<div class="product-badge" style="background-color: ${badgeColor}">${badge}</div>` : ''}
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-price">₹${product.price.toLocaleString()}</div>
+                                    <div class="product-title">${product.title}</div>
+                                    <div class="product-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        ${product.location}
+                                    </div>
+                                    <div class="product-meta">
+                                        <span>${product.category.toUpperCase()}</span>
+                                        <span>${product.date}</span>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            container.appendChild(productCard);
+                        });
+                        
+                        showNotification(`Found ${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''} for "${searchTerm}"`);
+                    }
+                }
+            });
+            
+            // Connect/Disconnect Twitter accounts
+            twitterAccountsContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.action-btn');
+                if (!button) return;
+                
+                const accountId = parseInt(button.getAttribute('data-id'));
+                const account = twitterAccounts.find(acc => acc.id === accountId);
+                
+                if (button.textContent.includes('Connect') || button.textContent.includes('Connected')) {
+                    // Toggle connection status
+                    account.connected = !account.connected;
+                    account.status = account.connected ? 'active' : 'inactive';
+                    account.lastActive = account.connected ? 'Just now' : account.lastActive;
+                    
+                    renderTwitterAccounts();
+                    updateStats();
+                    
+                    const status = account.connected ? 'connected to' : 'disconnected from';
+                    showNotification(`Successfully ${status} @${account.username}`);
+                } else if (button.textContent.includes('View Details')) {
+                    // Show account details modal
+                    showNotification(`Viewing details for @${account.username}`);
+                    // In a real app, this would open a detailed modal
+                }
+            });
+            
+            // Category cards click
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const categoryName = this.getAttribute('data-category');
+                    
+                    // Set the category filter
+                    categoryFilter.value = categoryName;
+                    currentCategoryFilter = categoryName;
+                    
+                    // Re-render products
+                    renderProducts(currentTab, document.getElementById(`${currentTab}ProductsGrid`), visibleProducts[currentTab]);
+                    
+                    // Show notification
+                    const categoryMap = {
+                        mobile: 'Mobile Phones',
+                        car: 'Cars',
+                        electronics: 'Electronics',
+                        furniture: 'Furniture',
+                        property: 'Real Estate',
+                        fashion: 'Fashion',
+                        vehicle: 'Motorcycles',
+                        pets: 'Pets'
+                    };
+                    
+                    showNotification(`Filtering by ${categoryMap[categoryName] || categoryName}`);
+                });
+            });
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            notificationText.textContent = message;
+            notification.style.backgroundColor = type === 'error' ? 'var(--danger-color)' : 'var(--success-color)';
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Simulate real-time updates
+        setInterval(() => {
+            // Randomly update some stats for demo purposes
+            const stats = ['totalProducts', 'soldProducts', 'totalViews'];
+            const randomStat = stats[Math.floor(Math.random() * stats.length)];
+            const statElement = document.getElementById(randomStat);
+            const currentValue = parseInt(statElement.textContent.replace('K', '').replace('.', ''));
+            
+            // Small random increment
+            const increment = Math.random() > 0.7 ? 1 : 0;
+            if (randomStat === 'totalViews') {
+                const newValue = currentValue + increment;
+                statElement.textContent = newValue >= 1000 ? 
+                    (newValue/1000).toFixed(1) + 'K' : newValue;
+            } else if (increment > 0) {
+                statElement.textContent = currentValue + increment;
+            }
+        }, 10000); // Update every 10 seconds
+    </script>
+</body>
+</html>
