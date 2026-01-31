@@ -2,7 +2,7 @@
 
 A fully-featured CHOR BAZAR marketplace clone with Twitter integration, AI-powered filtering, real-time chat, and comprehensive product management. Built with pure HTML, CSS, and JavaScript for easy deployment.
 
-![CHOR BAZAR Clone](https://github.com/Siddtiwari25/3D-plote/blob/main/PHOTOS/Screenshot%202026-02-01%20011323.png0) 
+![CHOR BAZAR Clone](PHOTOS/Screenshot 2026-02-01 011323.png) 
 
 ## 🌟 ive Demo
 [Try CHRO BAZAR Live](https://siddtiwari25.github.io/CHOR-BAZAR/#) 
@@ -11,7 +11,7 @@ A fully-featured CHOR BAZAR marketplace clone with Twitter integration, AI-power
 
 Dashboard	
 
-https://github.com/Siddtiwari25/3D-plote/blob/main/PHOTOS/Screenshot%202026-02-01%20011323.png?
+https://github.com/Siddtiwari25/CHOR-BAZAR/blob/main/PHOTOS/Screenshot%202026-02-01%20011323.png?
 
 
 ## ✨ Features
